@@ -1,30 +1,19 @@
 #!/usr/bin/env python
 # Subetha edit paper here: http://squeak.local./~twl/subethaedit-paper.pdf
 # SubPythonEdit Client and Server Piece
-#  Jean-Paul "exarkun" Calderone
-#  Allen "dash" Short
-#  Abhay "ark3" Saxena
 
 import sys, socket
 from optparse import OptionParser
 
 from twisted.spread import pb
 import twisted.spread.newjelly
-
-# cocoa imports go here, before the reactor is imported.
-"""
-from twisted.internet import cfsupport
-cfsupport.install(top-level-object)
-"""
-
+# cocoa imports go here.
 from twisted.internet import reactor
 from twisted.python import log
 
 import events
 
-# XXX ought to pick appropriate name for log file based on
-# server/client status and client unique ID
-#log.startLogging(open("sub.log", 'w')) 
+#log.startLogging(open("sub.log", 'w'))
 log.startLogging(sys.stdout)
 
 # nasty global thingy
@@ -47,8 +36,7 @@ class EditorRoot(pb.Root):
     def remote_event(self, event):
         """
         Receive client events and process according to event class
-        Event Types:  insert/delete, cursor/select
-            Sync is a large 'insert' -- see readme for idea caching
+        Event Types:  attach, detach, sync, insert, delete, cursor, ???
         """
         print 'Event received', event
         dead = []
@@ -90,7 +78,7 @@ class Client(pb.Referenceable):
 #            self.handleEditEvent(Event(replacementString, randomColor()))
         
 
-from twisted.internet import stdio  # This is going away, right?
+from twisted.internet import stdio
 
 def cbGotRootObject(root):
     print 'Got root object', root
@@ -116,8 +104,7 @@ class UserInputProtocol(basic.LineReceiver):
 #        ev = events.Event( line )
         try:
 #            self.root.callRemote('event', ev)
-            user = '%s:%s'%(socket.gethostbyname(socket.gethostname()),'rpk')
-            eventydoo = events.packevent( user, events.fuseInsert, 0, 0, line )
+            eventydoo = events.packevent(0, 'rpk', events.fuseInsert, 0, 0, line )
             self.root.callRemote('event', eventydoo )
         except pb.DeadReferenceError:
             print 'Server went away'
@@ -133,10 +120,15 @@ class UserInputProtocol(basic.LineReceiver):
 # Main/Startup code
 # ------------------------------------------------------------------
 
+"""
+from twisted.internet import cfsupport
+cfsupport.install(top-level-object)
+"""
+
 # refactor: use twisted.Application (launch via twistd)
-def server_main(port):
+def server_main():
     f = pb.PBServerFactory(EditorRoot())
-    p = reactor.listenTCP(port, f)
+    p = reactor.listenTCP(8910, f)
     reactor.run()
 
 def client_main(hostname, port):
@@ -163,9 +155,9 @@ def main():
     if options.isserver:
         # run as server
         # ...
-        server_main(options.port)
+        server_main()
 
-    client_main(options.hostname, options.port)
+    client_main(options.hostname, 8910)
 
 if __name__ == '__main__':
     main()

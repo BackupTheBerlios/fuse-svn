@@ -1,0 +1,17 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {toggleSharing = id; }; 
+            CLASS = FuseDocument; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                mainText = NSTextView; 
+                sharingButton = NSButton; 
+                sharingStatusLabel = NSTextField; 
+            }; 
+            SUPERCLASS = NSDocument; 
+        }
+    ); 
+    IBVersion = 1; 
+}

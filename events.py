@@ -7,6 +7,11 @@ from twisted.spread import pb
 #import twisted.spread
 #import twisted.spread.flavors
 
+# w a r n i n g
+# w a r n i n g
+# don't be fooled, these events aren't in use right now. use the
+# packevent and unpackevent method at the bottom
+
 ######################################################################
 # Data flavors. 
 ######################################################################
@@ -89,8 +94,8 @@ fuseDelete = 'delete'
 fuseCursor = 'cursor'
 fuseSelect = 'select'
 
-def packevent( user='', type=fuseInsert, begpos=0, endpos=0, text='',  ):
-    return '%s,%s,%d,%d,%s'%(user,type,begpos,endpos,text)
+def packevent( docnum=0, user='', type=fuseInsert, begpos=0, endpos=0, text='',  ):
+    return '%d,%s,%s,%d,%d,%s'%(docnum, user,type,begpos,endpos,text)
     
 def unpackevent( evstring='' ):
     return evstring.split(',')
