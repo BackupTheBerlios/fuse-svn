@@ -17,9 +17,10 @@ taxonomy:
 
 -- source repo, defect mgmt, etc. --
 
-http://developer.berlios.de/projects/fuse/
+project hosting:    http://developer.berlios.de/projects/fuse/
 dev svn access:     svn+ssh://username@svn.berlios.de/svnroot/repos/fuse/
 anon svn access:    svn co svn://svn.berlios.de/fuse
+wiki:               http://www.code-bear.com/fuse/FrontPage
 
 -- features --
   - authentication
