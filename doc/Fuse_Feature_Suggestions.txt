@@ -1,1 +1,83 @@
-Fuse Collaborative Document EditorFeature SuggestionsAuthor:     Andy Wright <waw@well.com>Revision:   1.0Date:       26 Mar 2005======================================The following is just a list of ideas for editor functionality and userinterface.  Somethingto start a discussion.  I'd love some feedback here...Include ability to store document locally in the following formats --    Flat text   + editor language extension (including XML...)    Language specific documentation   + code r/o or hidden    REST    OPML    RTF   + text styling    HTML   + text styling + linkingText storage supports formatting (above), encoding, and storage access means(SFTP, CVS, SVN, etc) all by extendable plug-in interfacesInclude option to store session meta-data    Authorship meta-data list including --        Handle        Name        E-mail address / URL        Session IM / IP address        Affiliation / copyright        Authored text colorization        Contribution read/write authorization        Session read/write authorization        Document mastership flag        Last submission date / time    Document style sheet        Styles include not only text and document meta-data, but also        document navigation, indexing, and inter-document linking.     Document (sets) repository address, access means, and versioning policy        I wouldn't mind if we largely bypassed OS specific file selection        storage dialogs with document archival policy meta-data panels.Include option to set text read-only by author and declare authorshipmeta-data for imported text.Preference windows / linked documents --    Logon-user default editor preferences    Logon-user default meta-data    Document author meta-data    Document style sheet    Document encoding, format, and presentation filter setting    Document (sets) repository address, and versioning policy    Clip-board(s)    Users accessible via zeroconf (,IM...)    Document advertise, joint management by document master    Alias list of user selected editor menu bar items and their icons    Recent accessed document list    Recent archived style list    Recent logged author list        Recent.. lists are editable (per user) history documents listing        preference (example: named styles) and navigation aliasesText editor windows includes an optional left collapsible hierarchicaldocument navigation panel.  The displayed hierarchy merges document storage,document navigation, document meta-data, and edit preference data documentnavigation.  The right editor panel can optionally be vertically broken so asto display a user selected set of multiple document views (by chapter, linenumber, method...), documents, meta-data, and preferences.  The editor menubar will then contain very few required sub-menus.Document meta-data and edit session preferences all manipulated as linkedhuman editable (and copy and paste-able) text documents using some standardformat (seen several I like) somewhere between REST and XML.  Editing isfacilitated by representing required data structures, error, and status fieldsas tinted read-only text, and available option menus by tool tips.Clip board to include text segment meta-data?  Stored authorship to includeoptional author smoothing filter to purge spelling correction 'line noise'?-- eof --
+Fuse Collaborative Document Editor
+Feature Suggestions
+
+Author:     Andy Wright <waw@well.com>
+Revision:   1.0
+Date:       26 Mar 2005
+======================================
+
+The following is just a list of ideas for editor functionality and user
+interface.  Something
+to start a discussion.  I'd love some feedback here...
+
+Include ability to store document locally in the following formats --
+    Flat text   + editor language extension (including XML...)
+    Language specific documentation   + code r/o or hidden
+    REST
+    OPML
+    RTF   + text styling
+    HTML   + text styling + linking
+
+Text storage supports formatting (above), encoding, and storage access means
+(SFTP, CVS, SVN, etc) all by extendable plug-in interfaces
+
+Include option to store session meta-data
+    Authorship meta-data list including --
+        Handle
+        Name
+        E-mail address / URL
+        Session IM / IP address
+        Affiliation / copyright
+        Authored text colorization
+        Contribution read/write authorization
+        Session read/write authorization
+        Document mastership flag
+        Last submission date / time
+
+    Document style sheet
+        Styles include not only text and document meta-data, but also
+        document navigation, indexing, and inter-document linking. 
+
+    Document (sets) repository address, access means, and versioning policy
+        I wouldn't mind if we largely bypassed OS specific file selection
+        storage dialogs with document archival policy meta-data panels.
+
+Include option to set text read-only by author and declare authorship
+meta-data for imported text.
+
+Preference windows / linked documents --
+    Logon-user default editor preferences
+    Logon-user default meta-data
+    Document author meta-data
+    Document style sheet
+    Document encoding, format, and presentation filter setting
+    Document (sets) repository address, and versioning policy
+    Clip-board(s)
+    Users accessible via zeroconf (,IM...)
+    Document advertise, joint management by document master
+    Alias list of user selected editor menu bar items and their icons
+
+    Recent accessed document list
+    Recent archived style list
+    Recent logged author list
+        Recent.. lists are editable (per user) history documents listing
+        preference (example: named styles) and navigation aliases
+
+Text editor windows includes an optional left collapsible hierarchical
+document navigation panel.  The displayed hierarchy merges document storage,
+document navigation, document meta-data, and edit preference data document
+navigation.  The right editor panel can optionally be vertically broken so as
+to display a user selected set of multiple document views (by chapter, line
+number, method...), documents, meta-data, and preferences.  The editor menu
+bar will then contain very few required sub-menus.
+
+Document meta-data and edit session preferences all manipulated as linked
+human editable (and copy and paste-able) text documents using some standard
+format (seen several I like) somewhere between REST and XML.  Editing is
+facilitated by representing required data structures, error, and status fields
+as tinted read-only text, and available option menus by tool tips.
+
+Clip board to include text segment meta-data?  Stored authorship to include
+optional author smoothing filter to purge spelling correction 'line noise'?
+
+-- eof --
