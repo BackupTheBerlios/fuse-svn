@@ -94,11 +94,13 @@ fuseDelete = 'delete'
 fuseCursor = 'cursor'
 fuseSelect = 'select'
 
+eventkeys = [ 'docnum', 'user', 'type', 'begpos', 'endpos', 'text' ]
+
 def packevent( docnum=0, user='', type=fuseInsert, begpos=0, endpos=0, text='',  ):
     return '%d,%s,%s,%d,%d,%s'%(docnum, user,type,begpos,endpos,text)
     
 def unpackevent( evstring='' ):
-    return evstring.split(',')
+    return dict( zip( eventkeys, evstring.split(',') ) )
 
 ######################################################################
 
@@ -107,14 +109,25 @@ class eventTester(unittest.TestCase):
     def setUp(self):
         pass
 
-    def createDelete(self):
+    def testCreateDelete(self):
         # how to instantiate the class hierarchy automatically?
         self.assertEqual( True, True )
 
-######################################################################
+class eventPackTester(unittest.TestCase):
+    
+    def setUp(self):
+        pass
 
-def main():
-    print "%d/%d event tests ran, %d passed"%( 0, 0, 0 )
+    def testPackUnpack(self):
+        preEventMap = { 'docnum':16, 'user':'rpk', 'type':fuseCursor,
+                        'begpos':33, 'endpos':21, 'text':'this is a test' }
+        packedEvent = packevent( preEventMap[ 'docnum' ], preEventMap[ 'user' ], preEventMap[ 'type' ],
+                    preEventMap[ 'begpos' ], preEventMap[ 'endpos' ], preEventMap[ 'text' ] )
+        postEventMap = unpackevent( packedEvent )
+        print preEventMap, postEventMap
+        self.assertEqual( preEventMap, postEventMap )
+
+######################################################################
 
 if __name__ == '__main__':
     unittest.main()

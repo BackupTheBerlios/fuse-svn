@@ -66,6 +66,13 @@ class AnnounceDelegate(NSObject):
         # might want to handle this
         # print ">>> netServiceDidStop"
 
+####################
+# text view delegate - gather and package selection events, etc
+
+class TextViewDelegate(NSObject):
+    def textViewDidChangeSelection( self, notif ):
+        print 'textViewDidChangeSelection_'
+
 ##
 #
 
@@ -127,7 +134,7 @@ class FuseDocument(NibClassBuilder.AutoBaseClass):
         log.debug("handling event: " + anEventString )
 #        attributes = NSDictionary.dictionaryWithObject_forKey_(anEvent.nscolor, NSBackgroundColorAttributeName)
 #        attrString = NSAttributedString.alloc().initWithString_attributes_(anEvent.data, attributes)
-        payload = events.unpackevent(anEventString)[5]  # text
+        payload = events.unpackevent(anEventString)['text']  # text
         attrString = NSAttributedString.alloc().initWithString_(payload)
         insertionPoint = self.mainText.selectedRange()[0]
         self.mainText.textStorage().insertAttributedString_atIndex_(attrString, insertionPoint)
@@ -192,7 +199,7 @@ class FuseDocument(NibClassBuilder.AutoBaseClass):
             self.path = None
  
         ##
-        # add the delegate
+        # add the delegate for rdvz to our app
         service = NSNetService.alloc().initWithDomain_type_name_port_(
                 rdvz_domain, rdvz_type, rdvz_name, rdvz_port)
         adel    = AnnounceDelegate.alloc().init()
@@ -201,7 +208,11 @@ class FuseDocument(NibClassBuilder.AutoBaseClass):
             service.setDelegate_( adel )
             service.publish()
  
-        
+        ##
+        # add the delegate for the textview
+        tvd = TextViewDelegate.alloc().init()
+        self.mainText.setDelegate_( tvd )
+
         # twisted reactor stuff
         if not reactor.running:
             log.debug('starting cfreactor')

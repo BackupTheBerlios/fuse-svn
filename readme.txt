@@ -16,6 +16,7 @@ Contributors:
     - password control access to doc
     - batch approval, rejection
     - global notification of pending users
+    - read/write approval on a per-participant basis
   - client undo open issue. undo is weird.
       (bear: something tells me undo will be server side only and passed to all
              - yeah, this bears (pi) further debate)
