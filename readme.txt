@@ -13,6 +13,7 @@ taxonomy:
  Linden Wright, lwright@mac.com, aim: Kusmeroglu
  Andrew Wright, waw@well.com,
  Jeffrey ...,,
+ Andy Harrington, anh@cs.luc.edu
 
 -- source repo, defect mgmt, etc. --
 
