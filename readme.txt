@@ -1,5 +1,4 @@
 taxonomy:
-
  - owner  : controls access / authentication
  - author : owner of segment(s)
 
@@ -16,6 +15,7 @@ taxonomy:
  Jeffrey ...,,
 
 -- source repo, defect mgmt, etc. --
+
 http://developer.berlios.de/projects/fuse/
 dev svn access:     svn+ssh://username@svn.berlios.de/svnroot/repos/fuse/
 anon svn access:    svn co svn://svn.berlios.de/fuse
