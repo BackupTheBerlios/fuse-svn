@@ -61,7 +61,8 @@ by enforcing the following constraints --
 	chance.
 
 
-The following text segment attributes facilitate efficient implementation of this contention logic.
+The following text segment attributes facilitate efficient implementation of
+this contention logic.
 	Flat text segment linkage -- forward and backward links to adapt to gross
 	text insertion, deletion, and ownership changes.  Note - the text segment
 	owner is responsible for its links to adjacent segments.
