@@ -9,7 +9,11 @@ from Foundation import *
 from AppKit import *
 from PyObjCTools import NibClassBuilder
 
-import twisted.internet.cfreactorreactor = twisted.internet.cfreactor.install()from twisted.internet import deferfrom twisted.web.xmlrpc import Proxy
+import twisted.internet.cfreactor
+reactor = twisted.internet.cfreactor.install()
+from twisted.internet import defer
+from twisted.web.xmlrpc import Proxy
+
 from twisted.spread import pb
 
 from client import EditorRoot
@@ -221,7 +225,8 @@ class FuseDocument(NibClassBuilder.AutoBaseClass):
             log.debug('starting cfreactor')
             # copied out of client.py:server_main()
             self.editResponder = EditorRoot()
-            self.editResponder.remote_attach(self)  # commits us to support callRemote(evtName, evt) method            f = pb.PBServerFactory(self.editResponder)
+            self.editResponder.remote_attach(self)  # commits us to support callRemote(evtName, evt) method
+	    f = pb.PBServerFactory(self.editResponder)
             p = reactor.listenTCP(8910, f)
             reactor.run()
 
