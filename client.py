@@ -104,7 +104,8 @@ class UserInputProtocol(basic.LineReceiver):
 #        ev = events.Event( line )
         try:
 #            self.root.callRemote('event', ev)
-            eventydoo = events.packevent(0, 'rpk', events.fuseInsert, 0, 0, line )
+            user = '%s:%s'%(socket.gethostbyname(socket.gethostname()), _uname)
+            eventydoo = events.packevent(user, events.fuseInsert, 0, 0, line )
             self.root.callRemote('event', eventydoo )
         except pb.DeadReferenceError:
             print 'Server went away'
@@ -148,8 +149,14 @@ def main():
                         help='Hostname of server')
     parser.add_option('-p', '--port', dest='port', default=8910,
                         help='subpythonedit server port')
+    parser.add_option('-u', '--user', dest='uname', default="AnonCwrd",
+                        help='Username')
+
     
     (options, args) = parser.parse_args()
+
+    global _uname
+    _uname = options.uname
 
     print options
     if options.isserver:
