@@ -1,6 +1,8 @@
 #!/usr/bin/env python
-# Subetha edit paper here: http://squeak.local./~twl/subethaedit-paper.pdf
-# SubPythonEdit Client and Server Piece
+
+__version__   = "$Revision: $"
+__date__      = "$Date: $"
+__license__   = "Python"
 
 import sys, socket
 from optparse import OptionParser
@@ -152,7 +154,6 @@ def main():
     parser.add_option('-u', '--user', dest='uname', default="AnonCwrd",
                         help='Username')
 
-    
     (options, args) = parser.parse_args()
 
     global _uname
