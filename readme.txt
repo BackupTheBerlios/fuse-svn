@@ -12,7 +12,7 @@ taxonomy:
  Nick Bastin, nbastin@mac.com, aim: mondragon0
  Andrew Harrington, anh@cs.luc.edu, aim: 
  Linden Wright, lwright@mac.com, aim: Kusmeroglu
- Andrew Wright,,
+ Andrew Wright, waw@well.com,
  Jeffrey ...,,
 
 -- source repo, defect mgmt, etc. --
