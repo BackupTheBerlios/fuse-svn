@@ -105,7 +105,7 @@ class UserInputProtocol(basic.LineReceiver):
         try:
 #            self.root.callRemote('event', ev)
             user = '%s:%s'%(socket.gethostbyname(socket.gethostname()), _uname)
-            eventydoo = events.packevent(user, events.fuseInsert, 0, 0, line )
+            eventydoo = events.packevent(0, user, events.fuseInsert, 0, 0, line )
             self.root.callRemote('event', eventydoo )
         except pb.DeadReferenceError:
             print 'Server went away'
