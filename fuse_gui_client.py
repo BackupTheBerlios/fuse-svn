@@ -70,8 +70,11 @@ class AnnounceDelegate(NSObject):
 # text view delegate - gather and package selection events, etc
 
 class TextViewDelegate(NSObject):
-    def textViewDidChangeSelection( self, notif ):
+    def textViewDidChangeSelection( self ):
         print 'textViewDidChangeSelection_'
+    def doCommandBySelector_( self, sel ):
+        print 'doCommandBySelector_'
+        return YES
 
 ##
 #
@@ -211,7 +214,7 @@ class FuseDocument(NibClassBuilder.AutoBaseClass):
         ##
         # add the delegate for the textview
         tvd = TextViewDelegate.alloc().init()
-        self.mainText.setDelegate_( tvd )
+        #self.mainText.setDelegate_( tvd )
 
         # twisted reactor stuff
         if not reactor.running:
