@@ -11,7 +11,7 @@ taxonomy:
  Mike "bear" Taylor, bear@code-bear.com, aim: codebear42, msn: bear@code-bear.com
  Nick Bastin, nbastin@mac.com, aim: mondragon0
  Andrew Harrington, anh@cs.luc.edu, aim: 
- Linden Wright,,
+ Linden Wright, lwright@mac.com, aim: Kusmeroglu
  Andrew Wright,,
  Jeffrey ...,,
 
