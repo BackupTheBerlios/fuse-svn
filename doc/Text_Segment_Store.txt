@@ -1,0 +1,96 @@
+Fuse Collaborative Document Editor Design
+Text Segment Store
+
+Author:     Andy Wright <waw@well.com>
+Revision:   1.0
+Date:       28 Mar 2005
+=========================================
+
+
+The text segment store is the local edit document buffer at the nexus the
+following data sources --
+	Local / network file system document opening by the master edit node
+	Front end editor user document incremental updates
+	Undo command logic incremental undo / redo document incremental updates
+	Network broadcast document incremental updates from other edit nodes
+	Document segment resynch due to network outages
+	Collaborative edit session joins as a non-master node
+
+and data sinks --
+	Local / network file system document saving and backup
+	Posting remote node incremental updates to the front end editor
+	Local user and remote node incremental updates posted to undo / redo FILO
+	Network broadcast document incremental updates from the front end editor
+	Document segment resynch due to network outages
+	Collaborative edit session joins by other non-master nodes
+
+The edit contention logic associated with the text segment store must
+guarantee that the document, as viewed from any of these sources or sinks,
+remains in synch.
+
+
+The text segment store data structure facilitates the edit contention logic
+by enforcing the following constraints --
+	Disjoint text segments -- if no more than one edit node is allowed to
+	edit any one text segment, edit contention is avoided.
+
+	The edit cursor is held at the trailing edge of an actively edited text
+	segment -- If another edit node wants to position its cursor within the
+	segment, the segment is split at the new cursor position, giving the text
+	up to the new cursor position to the new editor, and the remainder to the
+	current editor.
+
+	Edit segments also need to be split or joined for other reasons.  If
+	segment caving or unions are always performed at the leading edge of the
+	segment, the above cursor position rules are maintained.  Segment calving
+	is facilitated by the forward deletion of a text region starting at the
+	beginning of the texts segment.
+
+	Each text segment is owned by exactly one edit node on the network.  Of
+	the segments owned by any one node, one will be actively edited by the
+	front end editor (with its cursor positioned at the segment end).  Other
+	reasons for segment ownership might be historic edits made by the local
+	editor, text file reads, pastes, etc.  -- In all cases, edit contentions
+	for each text segment are managed by the edit node owning that segment,
+	alleviating the need for a reliable network master to handle contentions.
+
+	Network splits and outages are handled by the detected unresponsiveness
+	of a segment owner or multiple claimed ownerships.  The accessible
+	network nodes are asked to bid on segment ownership based upon the latest
+	contiguous text segment update sequence number they have received, and
+	chance.
+
+
+The following text segment attributes facilitate efficient implementation of this contention logic.
+	Flat text segment linkage -- forward and backward links to adapt to gross
+	text insertion, deletion, and ownership changes.  Note - the text segment
+	owner is responsible for its links to adjacent segments.
+
+	Segment owner node -- used to target edit permission requests and to
+	facilitate network outage recovery.
+
+	Incremental text update sequence number -- used to insure reliable
+	incremental edit propagation and to ascertain possession of an accurate
+	copy of the segment.
+	
+	Node message sequence number -- used with node heartbeat broadcasts to
+	insure reliable communication between edit nodes and ascertain required
+	text segment data retransmission.  Note - to minimize lost data recovery
+	logic, full copies of effected text segments can be retransmitted.
+
+
+Text segmentation is also used to manage other text meta-properties,
+including --
+	Document properties including repository information and authoring group
+
+	Text style
+
+	Original author or source (need we say zanadu)
+
+	Section and document linkage
+
+	Outline hierarchy, selection, match, visibility (read), and write
+	permissions
+
+
+-- eof --
