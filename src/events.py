@@ -1,4 +1,5 @@
 from StringIO import StringIO
+import py # for special test cases (exceptions, etc)
 from array import array
 import Queue
 
@@ -167,7 +168,11 @@ def test_insert_posttail():
     assert 0
 
 def test_insert_prehead():
-    try:
+    ss = "aaa"
+    buf = Buffer(ss)
+    ii = Insert( "ian", -44, "abcd" )
+    ex = py.test.raises( AssertionError, ii.apply, buf )
+'''    try:
         ss = "aaa"
         buf = Buffer(ss)
         ii = Insert( "ian", -44, "abcd" );
@@ -175,14 +180,8 @@ def test_insert_prehead():
     except AssertionError, t:
         return
     assert 0
+'''
 
-def test_assert():
-    try:
-        assert 0
-    except AssertionError, t:
-        return
-    assert 0
-    
 #------------------------------------
 # http://codespeak.net/py/current/doc/
 

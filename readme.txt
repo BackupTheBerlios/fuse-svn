@@ -1,16 +1,26 @@
-Contributors:
+taxonomy:
+
+ - owner  : controls access / authentication
+ - author : owner of segment(s)
+
+-- Contributors --
 
  Ian Jones, ianjones@umich.edu
  Bob Kuehne, rpk@blue-newt.com, aim: rpk@mac.com
  Abhay Saxena, ark3@email.com
  Mike "bear" Taylor, bear@code-bear.com, aim: codebear42, msn: bear@code-bear.com
  Nick Bastin, nbastin@mac.com, aim: mondragon0
- Jean-Paul "exarkun" Calderone @twisted.com
- Allen "dash" Short @twisted.com
+ Andrew Harrington, anh@cs.luc.edu, aim: 
+ Linden Wright,,
+ Andrew Wright,,
+ Jeffrey ...,,
 
+-- source repo, defect mgmt, etc. --
+http://developer.berlios.de/projects/fuse/
+dev svn access:     svn+ssh://username@svn.berlios.de/svnroot/repos/fuse/
+anon svn access:    svn co svn://svn.berlios.de/fuse
 
-"""
- features
+-- features --
   - authentication
     - subetha-style approve/deny on per-person basis
     - password control access to doc
@@ -34,9 +44,7 @@ Contributors:
     - contiguous char+syms
    - cli/srv is sync in that char entered on cli don't appear on
    
-"""
-
-"""
+-- old model --
     dataflow (client)
         client: user types text / edits / moves / selects
         client: packages text into an edit event, sends to server
@@ -49,7 +57,6 @@ Contributors:
         server: when client connects, sends initial 'insert' event with current text
         server: waits for further client events (self is client too)
 
-"""
 -- urls --
 
 py lib/test/execthing:    http://codespeak.net/py/current/doc/
