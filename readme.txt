@@ -50,4 +50,9 @@ Contributors:
         server: waits for further client events (self is client too)
 
 """
+-- urls --
+
+py lib/test/execthing:    http://codespeak.net/py/current/doc/
+pyzeroconf:               http://sourceforge.net/projects/pyzeroconf
+pyzeroconf disc:          http://www.amk.ca/python/zeroconf
 
